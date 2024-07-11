@@ -20,7 +20,7 @@ currentStories.push({
     Title: 'Marist Story 2',
     Body: 'The founder of marist was the one and only . . . Fr.Jean Claude Colin.',
     linkUrl: 'https://example.com/story2',
-    imageUrl: 'images/hudsonriver.png'
+    imageUrl: 'images/colin.png'
 });
 
 currentStories.push({
@@ -38,7 +38,7 @@ function displayItem(feedItem) {
             <h2><a href="${feedItem.linkUrl}" target="_blank">${feedItem.Title}</a></h2>
             <p>${feedItem.Body}</p>
             <a href="${feedItem.linkUrl}" target="_blank">
-                <img src="${feedItem.imageUrl}" alt="${feedItem.Title}" style="max-width: 30%; height:30%;">
+                <img id="feedphoto" src="${feedItem.imageUrl}" alt="${feedItem.Title}" style="max-width: 30%; height:30%;">
             </a>
             <hr>
         </div>

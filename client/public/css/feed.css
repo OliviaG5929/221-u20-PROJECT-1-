@@ -67,18 +67,19 @@ a {
 	text-align: center;
 }
 
-.feedImage {
+#feedphoto {
 	font-weight: 400px;
 	max-width: 150px;
 	max-height: 150px;
 	text-align: center;
-	border: rgb(0, 0, 0);
-	border-radius: 300px;
-	padding: 5px;
+	border: 100px solid black;
+	padding: 50px;
+	border-image: url(whiteBackground.png);
 }
 
 .myClass {
 	color:black;
+	font-weight: 100px;
 	text-decoration: none;
 }
 body {
