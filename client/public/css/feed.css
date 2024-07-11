@@ -76,6 +76,11 @@ a {
 	border-radius: 300px;
 	padding: 5px;
 }
+
+.myClass {
+	color:black;
+	text-decoration: none;
+}
 body {
 	font-weight: 400px;
     background-image: url(../images/pinkoink.png);
