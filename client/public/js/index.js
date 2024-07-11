@@ -9,3 +9,15 @@ function checkKeyPress(e) {
     goToLocation('/feed');
   }
 }
+
+
+document.addEventListener("keydown",checkKeyPress);
+document.addEventListener('click',function() {
+  goToLocation('/feed');
+});
+
+let fadeText = document.getElementById('fade_text');
+
+fadeText.onclick = () => {
+  window.location = "/feed";
+}
