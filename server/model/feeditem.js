@@ -5,9 +5,10 @@ class FeedItem {
         this.body = body;
         this.linkUrl = linkUrl;
         this.imageUrl = imageUrl;
+        this.caseOH = caseOH;
     }
 }
 
-exports.createUser = function(id, title, body, linkUrl, imageUrl) {
-    return new user(id, title, body, linkUrl, imageUrl);
+exports.createFeedItem = function(id, title, body, linkUrl, imageUrl, caseOH) {
+    return new FeedItem(id, title, body, linkUrl, imageUrl,caseOH);
   };

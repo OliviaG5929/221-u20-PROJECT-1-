@@ -19,8 +19,7 @@ const feedController = require('../controller/feedController');
 
 const router = express.Router();
 
-router.route('/feedItems')
-    .get(feedController.getAllFeedItems);
+router.get('/feedItems', feedController.getAllFeedItems);
 
 router.post('/feed', feedController.createFeedItems);
 router.get('/feed/:id', feedController.getFeedItemsById);

@@ -1,6 +1,9 @@
 const FeedItem = require('../model/feeditem');
 
 let feedItems = [];
+let one = FeedItem.createFeedItem(1, "title", "body", "linkUrl","imageUrl", "caseOH");
+feedItems.push(one); 
+console.log(feedItems);
 let currentId = 1;
 
 exports.getAllFeedItems = (req, res) => {
@@ -10,7 +13,7 @@ exports.getAllFeedItems = (req, res) => {
 
 exports.createFeedItems = (req, res) => {
     const { title, body, linkUrl, imageUrl } = req.body;
-    const newFeedItem = new FeedItem(currentId++, title, body, linkUrl, imageUrl);
+    const newFeedItem = new FeedItem(currentId++, title, body, linkUrl, imageUrl, caseOh);
     feedItems.push(newFeedItem);
     res.setHeader('Content-Type', 'application/json');
     res.status(201).send(newFeedItem);
@@ -29,7 +32,7 @@ exports.getFeedItemsById = (req, res) => {
 
 exports.updateFeedItems = (req, res) => {
     const { id } = req.params;
-    const { title, body, linkUrl, imageUrl } = req.body;
+    const { title, body, linkUrl, imageUrl, caseOH } = req.body;
     let feedItem = feedItems.find(item => item.id === parseInt(id));
     if (feedItem) {
         feedItem.title = title || feedItem.title;
