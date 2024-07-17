@@ -13,7 +13,7 @@ exports.getAllFeedItems = (req, res) => {
 
 exports.createFeedItems = (req, res) => {
     const { title, body, linkUrl, imageUrl } = req.body;
-    const newFeedItem = new FeedItem(currentId++, title, body, linkUrl, imageUrl, caseOh);
+    const newFeedItem = new FeedItem(currentId++, title, body, linkUrl, imageUrl, caseOH);
     feedItems.push(newFeedItem);
     res.setHeader('Content-Type', 'application/json');
     res.status(201).send(newFeedItem);
@@ -39,6 +39,7 @@ exports.updateFeedItems = (req, res) => {
         feedItem.body = body || feedItem.body;
         feedItem.linkUrl = linkUrl || feedItem.linkUrl;
         feedItem.imageUrl = imageUrl || feedItem.imageUrl;
+        feedItem.caseOH = caseOH || feedItem.caseOH;
         res.setHeader('Content-Type', 'application/json');
         res.send(feedItem);
     } else {

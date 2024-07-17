@@ -1,5 +1,5 @@
 class FeedItem {
-    constructor(id, title, body, linkUrl, imageUrl) {
+    constructor(id, title, body, linkUrl, imageUrl,caseOH) {
         this.id = id;
         this.title = title;
         this.body = body;
