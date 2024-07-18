@@ -1,14 +1,19 @@
+// feeditem.js
 class FeedItem {
-    constructor(id, title, body, linkUrl, imageUrl,caseOH) {
+    constructor(id, Marist, School, Flower, city, Youtuber, Game) {
         this.id = id;
-        this.title = title;
-        this.body = body;
-        this.linkUrl = linkUrl;
-        this.imageUrl = imageUrl;
-        this.caseOH = caseOH;
+        this.Marist = Marist;
+        this.School = School;
+        this.Flower = Flower;
+        this.city = city;
+        this.Youtuber = Youtuber;
+        this.Game = Game;
+    }
+
+    // Factory method to create a new FeedItem
+    static createFeedItem(id, Marist, School, Flower, city, Youtuber, Game) {
+        return new FeedItem(id, Marist, School, Flower, city, Youtuber, Game);
     }
 }
 
-exports.createFeedItem = function(id, title, body, linkUrl, imageUrl, caseOH) {
-    return new FeedItem(id, title, body, linkUrl, imageUrl,caseOH);
-  };
+module.exports = FeedItem;

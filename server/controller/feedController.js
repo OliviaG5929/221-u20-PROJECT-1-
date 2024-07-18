@@ -1,59 +1,81 @@
-const FeedItem = require('../model/feeditem');
+const FeedItem = require('../model/feeditem'); // Make sure this path is correct
 
 let feedItems = [];
-let one = FeedItem.createFeedItem(1, "title", "body", "linkUrl","imageUrl", "caseOH");
-feedItems.push(one); 
-console.log(feedItems);
 let currentId = 1;
 
+// Initial seed data
+let one = FeedItem.createFeedItem(
+    currentId++,
+    "college",
+    "teachers",
+    "roses",
+    "NewYork",
+    "caseOH",
+    "DressToImpress"
+);
+feedItems.push(one);
+console.log(feedItems);
+
+// GET all feed items
 exports.getAllFeedItems = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(feedItems);
+    res.status(200).send(feedItems);
 };
 
+// POST a new feed item
 exports.createFeedItems = (req, res) => {
-    const { title, body, linkUrl, imageUrl } = req.body;
-    const newFeedItem = new FeedItem(currentId++, title, body, linkUrl, imageUrl, caseOH);
+    const { Marist, School, Flower, city, Youtuber, Game } = req.body;
+    
+    // Validate request body
+    if (!Marist || !School || !Flower || !city || !Youtuber || !Game) {
+        return res.status(400).send({ message: 'All fields are required' });
+    }
+
+    const newFeedItem = FeedItem.createFeedItem(
+        currentId++,
+        Marist,
+        School,
+        Flower,
+        city,
+        Youtuber,
+        Game
+    );
+
     feedItems.push(newFeedItem);
     res.setHeader('Content-Type', 'application/json');
     res.status(201).send(newFeedItem);
 };
 
-exports.getFeedItemsById = (req, res) => {
-    const { id } = req.params;
-    const feedItem = feedItems.find(item => item.id === parseInt(id));
-    if (feedItem) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(feedItem);
-    } else {
-        res.status(404).send({ message: 'Feed item not found' });
-    }
-};
-
+// PUT (update) a feed item by ID
 exports.updateFeedItems = (req, res) => {
     const { id } = req.params;
-    const { title, body, linkUrl, imageUrl, caseOH } = req.body;
-    let feedItem = feedItems.find(item => item.id === parseInt(id));
+    const { Marist, School, Flower, city, Youtuber, Game } = req.body;
+
+    const feedItem = FeedItems.find(item => item.id === parseInt(id));
     if (feedItem) {
-        feedItem.title = title || feedItem.title;
-        feedItem.body = body || feedItem.body;
-        feedItem.linkUrl = linkUrl || feedItem.linkUrl;
-        feedItem.imageUrl = imageUrl || feedItem.imageUrl;
-        feedItem.caseOH = caseOH || feedItem.caseOH;
+        feedItem.Marist = Marist || feedItem.Marist;
+        feedItem.School = School || feedItem.School;
+        feedItem.Flower = Flower || feedItem.Flower;
+        feedItem.city = city || feedItem.city;
+        feedItem.Youtuber = Youtuber || feedItem.Youtuber;
+        feedItem.Game = Game || feedItem.Game;
         res.setHeader('Content-Type', 'application/json');
-        res.send(feedItem);
-    } else {
+        res.status(200).send(feedItem);
+    } 
+    else {
         res.status(404).send({ message: 'Feed item not found' });
     }
 };
 
+// DELETE a feed item by ID
 exports.deleteFeedItems = (req, res) => {
     const { id } = req.params;
     const index = feedItems.findIndex(item => item.id === parseInt(id));
+
     if (index !== -1) {
         const deletedItem = feedItems.splice(index, 1);
         res.setHeader('Content-Type', 'application/json');
-        res.send(deletedItem[0]);
+        res.status(200).send(deletedItem[0]);
     } else {
         res.status(404).send({ message: 'Feed item not found' });
     }
